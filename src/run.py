@@ -122,7 +122,8 @@ class ConformityReports:
         report_headers = csv_report_data.pop(0)
 
         for report_entry in csv_report_data:
-            if report_entry < report_headers:
+            if len(report_entry) < len(report_headers):
+                logging.debug(f'Skipping report entry: {report_entry}')
                 continue
 
             formatted_entry = dict(zip(report_headers, report_entry))
